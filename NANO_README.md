@@ -6,6 +6,7 @@ Part of the [gemma4-turbo](https://ollama.com/ssfdre38/gemma4-turbo) family, gem
 
 ## 🚀 Quick Start
 
+**Option 1: Use Ollama Hub (easiest)**
 ```bash
 # Run the latest nano model (e4b, 4.7 GB)
 ollama run ssfdre38/gemma4-nano
@@ -13,6 +14,23 @@ ollama run ssfdre38/gemma4-nano
 # Or specify a size
 ollama run ssfdre38/gemma4-nano:e2b  # 3.1 GB - fits 4GB RAM devices
 ollama run ssfdre38/gemma4-nano:e4b  # 4.7 GB - best balance
+```
+
+**Option 2: Download GGUF files directly**
+
+Get the raw GGUF files from Hugging Face: [ssfdre38/gemma4-nano-gguf](https://huggingface.co/ssfdre38/gemma4-nano-gguf)
+
+```bash
+# Download
+wget https://huggingface.co/ssfdre38/gemma4-nano-gguf/resolve/main/gemma4-e2b-q3ks-nano.gguf
+
+# Create Modelfile
+echo "FROM ./gemma4-e2b-q3ks-nano.gguf
+PARAMETER num_ctx 16384" > Modelfile
+
+# Create and run
+ollama create my-nano -f Modelfile
+ollama run my-nano
 ```
 
 ## 📊 Model Sizes
@@ -112,9 +130,11 @@ Apache 2.0 - same as Gemma 4 base models
 
 ## 📚 Resources
 
-- [Kaggle Gemma 4 Good Hackathon submission](https://github.com/ssfdre38/gemma4-turbo)
-- [Benchmark results and scripts](https://github.com/ssfdre38/gemma4-turbo/blob/main/BENCHMARK_RESULTS.md)
-- [Technical writeup](https://github.com/ssfdre38/gemma4-turbo#how-it-works)
+- [Download GGUF files](https://huggingface.co/ssfdre38/gemma4-nano-gguf) - Hugging Face
+- [Ollama Hub](https://ollama.com/ssfdre38/gemma4-nano) - Pre-built models
+- [GitHub repo](https://github.com/ssfdre38/gemma4-turbo) - Source code
+- [Benchmark results](https://github.com/ssfdre38/gemma4-turbo/blob/main/BENCHMARK_RESULTS.md)
+- [Kaggle submission](https://github.com/ssfdre38/gemma4-turbo) - Gemma 4 Good Hackathon
 
 ---
 
