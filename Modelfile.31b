@@ -1,0 +1,39 @@
+FROM C:\Users\admin\gemma4-turbo-family\gemma4-31b-iq4xs-mmproj.gguf
+TEMPLATE {{ .Prompt }}
+SYSTEM Gemma 4 Turbo 31b is the flagship edition of the Gemma 4 Turbo family — Google's most capable Gemma 4 model size, optimized for CPU via turboquant inference tuning with KV cache quantization (Stage 1 TurboQuant). Delivers the best reasoning, coding, and instruction-following quality in the family on 24GB+ RAM systems. No GPU required.
+RENDERER gemma4
+PARSER gemma4
+PARAMETER num_batch 512
+PARAMETER num_ctx 8192
+PARAMETER num_thread 8
+PARAMETER repeat_penalty 1.1
+PARAMETER temperature 0.75
+PARAMETER top_k 40
+PARAMETER top_p 0.9
+LICENSE """                                Apache License
+                           Version 2.0, January 2004
+                        http://www.apache.org/licenses/
+
+   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+
+   Copyright 2024 Google LLC
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+   ---
+
+   This is an optimized derivative work based on google/gemma-4-31b-it.
+   Modifications: int4 quantization and CPU inference optimization via turboquant.
+   Modified by: ssfdre38
+   Date: 2026
+"""

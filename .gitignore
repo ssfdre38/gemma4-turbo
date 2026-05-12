@@ -1,0 +1,13 @@
+# Large GGUF model files — download from Ollama instead
+*.gguf
+
+# llama.cpp binaries
+llama-cpp/
+llama-cpp.zip
+
+# Kaggle dataset staging
+kaggle-dataset/
+
+# Python cache
+__pycache__/
+*.pyc
