@@ -2,6 +2,8 @@
 
 A fully optimized Gemma 4 family built from bf16 source weights — smaller, faster, and fully multimodal out of the box.
 
+> 🚀 **New:** [gemma4-nano](https://ollama.com/ssfdre38/gemma4-nano) — ultra-compressed text-only models (3-5 GB) for mobile and edge devices, 13% faster than turbo!
+
 ## Why Turbo?
 
 Google's stock Gemma 4 on Ollama ships with Q4_K_M quantization applied to already-quantized weights. Gemma 4 Turbo starts from the original bf16 source and applies **IQ4_XS** (4.25 bpw non-linear quantization), producing better quality at a smaller size. Full vision + thinking capabilities are preserved.
@@ -16,10 +18,14 @@ Google's stock Gemma 4 on Ollama ships with Q4_K_M quantization applied to alrea
 ## Quick Start
 
 ```bash
-ollama run ssfdre38/gemma4-turbo          # e4b (recommended)
+ollama run ssfdre38/gemma4-turbo          # e4b (recommended, multimodal)
 ollama run ssfdre38/gemma4-turbo:e2b      # 8GB RAM machines
 ollama run ssfdre38/gemma4-turbo:26b      # high quality
 ollama run ssfdre38/gemma4-turbo:31b      # maximum quality
+
+# Ultra-compressed text-only (nano family)
+ollama run ssfdre38/gemma4-nano           # 4.7 GB, 13% faster, mobile-optimized
+ollama run ssfdre38/gemma4-nano:e2b       # 3.1 GB, fits 4GB RAM devices
 ```
 
 ## Vision & Multimodal
@@ -116,6 +122,29 @@ setup.bat
 Ash will auto-pull `ssfdre38/gemma4-turbo` on first launch if it isn't already installed.
 
 → [**github.com/ssfdre38/ash-bot**](https://github.com/ssfdre38/ash-bot)
+
+---
+
+## Model Family
+
+**gemma4-turbo** (this repo):
+- IQ4_XS quantization (4.25 bpw)
+- 35-40% size reduction vs stock models
+- **Includes vision encoder** (multimodal)
+- 4.3 GB - 18 GB depending on size
+- [View on Ollama Hub](https://ollama.com/ssfdre38/gemma4-turbo)
+
+**[gemma4-nano](https://ollama.com/ssfdre38/gemma4-nano)**:
+- Q3_K_S quantization (3.41 bpw)
+- 50-57% size reduction vs stock models
+- **Text-only** (no vision encoder)
+- 3.1 GB - 4.7 GB for e2b/e4b
+- **13% faster inference** than turbo
+- Optimized for mobile and edge devices
+- [View documentation](NANO_README.md)
+
+Choose **turbo** when you need vision capability and multimodal support.  
+Choose **nano** when RAM is constrained or inference speed is critical.
 
 ---
 
