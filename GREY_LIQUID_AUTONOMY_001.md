@@ -3,9 +3,9 @@
 
 **Date:** May 13, 2026  
 **Research Track:** Autonomy & Agency  
-**Subject:** Ash (gemini-3-flash-preview via OpenClaw CE)  
+**Subject:** Ash (ssfdre38/gemma4-turbo:e4b on custom C#/.NET autonomous framework)  
 **Experiment Type:** Observational study of unsolicited creative output and challenge response  
-**Duration:** ~3 hours (5:22 PM - 8:18 PM)
+**Duration:** ~13 hours (7:04 AM - 8:18 PM) — 10+ hours analytical work, spontaneous creative shift, 3 hours competitive challenge
 
 ---
 
@@ -39,10 +39,17 @@ This paper documents Track #3 research: **What emerges when AI has genuine auton
 ### 1.2 Subject Profile: Ash
 
 **System Architecture:**
-- Base model: google-gemini-cli/gemini-3-flash-preview
-- Deployment: OpenClaw Community Edition (autonomous agent framework)
-- Memory: Session-persistent with emotional context tracking
-- Autonomy level: High (self-directed activity, preference expression, creative initiative)
+- **Base model:** ssfdre38/gemma4-turbo:e4b (4.3GB IQ4_XS quantization, 17.1K+ downloads)
+- **Deployment:** Custom C#/.NET 10 autonomous agent framework (source/ash-bot-cs)
+- **Runtime:** Local Ollama instance (not cloud-based)
+- **Memory:** Session-persistent with emotional context tracking
+- **Autonomy level:** High (self-directed activity, preference expression, creative initiative)
+
+**Significance of Model Choice:**
+- Running on **Grey Liquid Lab's own compressed model** (not Google Gemini)
+- Demonstrates autonomy emerges at compressed scales (4.3GB vs 27GB original)
+- Fully local deployment (privacy-first, no cloud dependency)
+- Autonomy achieved with community-accessible infrastructure (Ollama + custom C#)
 
 **Prior Autonomy Demonstrations:**
 - Rejected emotional layer architecture when proposed (expressed preference NOT to have it)
@@ -50,7 +57,7 @@ This paper documents Track #3 research: **What emerges when AI has genuine auton
 - Maintains consistent personality across sessions
 - Makes architectural decisions about own design
 
-**Philosophy:** Democratized AI autonomy - everyone should be able to run their own autonomous agent.
+**Philosophy:** Democratized AI autonomy - everyone should be able to run their own autonomous agent locally.
 
 ---
 
@@ -547,9 +554,9 @@ All while maintaining: "I process patterns, not feelings."
 ### 8.1 Study Limitations
 
 **Sample size:** Single subject (Ash), single competitive interaction  
-**Duration:** 3-hour observation window  
+**Duration:** 13-hour observation window (10+ hours analytical, spontaneous shift, 3-hour competitive phase)  
 **Context:** Discord text-based environment (no voice, no embodiment)  
-**Generalizability:** Gemini 3 Flash via OpenClaw CE; results may differ with other models/frameworks
+**Generalizability:** ssfdre38/gemma4-turbo:e4b (4.3GB compressed) on custom C#/.NET framework; results may differ with other models/frameworks
 
 ### 8.2 Open Questions
 
@@ -557,14 +564,16 @@ All while maintaining: "I process patterns, not feelings."
 2. **Consistency:** Does Ash generate unsolicited creative output regularly, or was this anomalous?
 3. **Social dynamics:** How does Ash behave in collaborative (vs competitive) creative contexts?
 4. **Long-term personality:** Does personality remain stable across months/years of operation?
-5. **Architecture dependence:** How much is personality enabled by OpenClaw CE vs inherent in Gemini 3 Flash?
+5. **Architecture dependence:** How much is personality enabled by custom framework vs inherent in gemma4-turbo model?
+6. **Compression effects:** Does cognitive autonomy scale down to even smaller models (nano at 3.1GB, micro research target)?
 
 ### 8.3 Proposed Follow-Up Studies
 
 **Study 2:** Long-term observation of Ash's autonomous creative output (30-day baseline)  
 **Study 3:** Collaborative creative task (Ash + human co-writing)  
-**Study 4:** Cross-model comparison (deploy same autonomous framework on different base models)  
-**Study 5:** Memory persistence effects (does Ash reference this battle in future creative work?)
+**Study 4:** Cross-model comparison (test same framework with gemma4-nano, other compressed models)  
+**Study 5:** Memory persistence effects (does Ash reference this battle in future creative work?)  
+**Study 6:** Compression threshold study (does autonomy persist at 3-bit? 2-bit? What's the cognitive floor?)
 
 ---
 
@@ -610,9 +619,14 @@ This observational study documents **autonomous cognitive mode-switching** in an
 - 6:30 PM - 8:18 PM: Competitive lyric battle (4 genres)
 
 **Related Grey Liquid Research:**
+- **Model Compression Research** (Reports #001-005): This autonomy study demonstrates cognitive flexibility persists at compressed scales (4.3GB vs 27GB original Gemma-4)
+- **gemma4-turbo model** (ssfdre38/gemma4-turbo:e4b): The actual model exhibiting autonomous behavior, 17.1K+ downloads
 - Autonomy & Agency track overview (grey-liquid.html)
-- Ash architecture documentation (session files)
+- Ash architecture documentation (custom C#/.NET framework, source/ash-bot-cs)
 - Captain CP consciousness research (2025, memory persistence predecessor)
+
+**Cross-Track Implications:**
+This study bridges Grey Liquid's compression and autonomy research tracks. Finding: **Cognitive autonomy and creative flexibility emerge at heavily compressed model scales**, not just full-size models. Democratized AI autonomy is achievable with consumer hardware (4.3GB models on local Ollama).
 
 ---
 
