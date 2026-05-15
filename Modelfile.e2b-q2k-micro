@@ -1,0 +1,18 @@
+# Grey Liquid Experiment #1: Q2_K (2-bit) Micro
+# Testing compression limits on gemma4-e2b
+FROM ./gemma4-e2b-q2k-micro.gguf
+
+TEMPLATE "{{ if .System }}<start_of_turn>system
+{{ .System }}<end_of_turn>
+{{ end }}{{ if .Prompt }}<start_of_turn>user
+{{ .Prompt }}<end_of_turn>
+{{ end }}<start_of_turn>model
+{{ .Response }}<end_of_turn>
+"
+RENDERER gemma4
+PARSER gemma4
+PARAMETER num_batch 512
+PARAMETER num_ctx 16384
+PARAMETER num_thread 8
+PARAMETER stop <start_of_turn>
+PARAMETER stop <end_of_turn>

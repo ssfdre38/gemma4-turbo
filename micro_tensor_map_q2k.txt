@@ -1,0 +1,123 @@
+# Grey Liquid G4 Micro - Mixed Precision Tensor Map (Q2_K variant)
+# Strategy: Protect architectural critical layers, compress the rest
+# This bypasses imatrix requirement by keeping critical layers at safe precision
+
+# === PROTECTED: PLE Embeddings (52% of model) ===
+per_layer_token_embd.weight=Q4_K
+token_embd.weight=Q4_K
+
+# === PROTECTED: PLE Projection & Gates ===
+per_layer_model_proj.weight=Q4_K
+
+# === PROTECTED: PLE Pathway (per-block gates) ===
+blk.*.inp_gate.weight=Q4_K
+blk.*.proj.weight=Q4_K
+
+# === PROTECTED: Output layers ===
+output.weight=Q6_K
+output_norm.weight=Q8_0
+
+# === PROTECTED: Attention (global layers - blk 15-34) ===
+# These are the ones llama-imatrix couldn't cover
+blk.15.attn_q.weight=Q3_K
+blk.15.attn_k.weight=Q3_K
+blk.15.attn_v.weight=Q3_K
+blk.15.attn_output.weight=Q3_K
+
+blk.16.attn_q.weight=Q3_K
+blk.16.attn_k.weight=Q3_K
+blk.16.attn_v.weight=Q3_K
+blk.16.attn_output.weight=Q3_K
+
+blk.17.attn_q.weight=Q3_K
+blk.17.attn_k.weight=Q3_K
+blk.17.attn_v.weight=Q3_K
+blk.17.attn_output.weight=Q3_K
+
+blk.18.attn_q.weight=Q3_K
+blk.18.attn_k.weight=Q3_K
+blk.18.attn_v.weight=Q3_K
+blk.18.attn_output.weight=Q3_K
+
+blk.19.attn_q.weight=Q3_K
+blk.19.attn_k.weight=Q3_K
+blk.19.attn_v.weight=Q3_K
+blk.19.attn_output.weight=Q3_K
+
+blk.20.attn_q.weight=Q3_K
+blk.20.attn_k.weight=Q3_K
+blk.20.attn_v.weight=Q3_K
+blk.20.attn_output.weight=Q3_K
+
+blk.21.attn_q.weight=Q3_K
+blk.21.attn_k.weight=Q3_K
+blk.21.attn_v.weight=Q3_K
+blk.21.attn_output.weight=Q3_K
+
+blk.22.attn_q.weight=Q3_K
+blk.22.attn_k.weight=Q3_K
+blk.22.attn_v.weight=Q3_K
+blk.22.attn_output.weight=Q3_K
+
+blk.23.attn_q.weight=Q3_K
+blk.23.attn_k.weight=Q3_K
+blk.23.attn_v.weight=Q3_K
+blk.23.attn_output.weight=Q3_K
+
+blk.24.attn_q.weight=Q3_K
+blk.24.attn_k.weight=Q3_K
+blk.24.attn_v.weight=Q3_K
+blk.24.attn_output.weight=Q3_K
+
+blk.25.attn_q.weight=Q3_K
+blk.25.attn_k.weight=Q3_K
+blk.25.attn_v.weight=Q3_K
+blk.25.attn_output.weight=Q3_K
+
+blk.26.attn_q.weight=Q3_K
+blk.26.attn_k.weight=Q3_K
+blk.26.attn_v.weight=Q3_K
+blk.26.attn_output.weight=Q3_K
+
+blk.27.attn_q.weight=Q3_K
+blk.27.attn_k.weight=Q3_K
+blk.27.attn_v.weight=Q3_K
+blk.27.attn_output.weight=Q3_K
+
+blk.28.attn_q.weight=Q3_K
+blk.28.attn_k.weight=Q3_K
+blk.28.attn_v.weight=Q3_K
+blk.28.attn_output.weight=Q3_K
+
+blk.29.attn_q.weight=Q3_K
+blk.29.attn_k.weight=Q3_K
+blk.29.attn_v.weight=Q3_K
+blk.29.attn_output.weight=Q3_K
+
+blk.30.attn_q.weight=Q3_K
+blk.30.attn_k.weight=Q3_K
+blk.30.attn_v.weight=Q3_K
+blk.30.attn_output.weight=Q3_K
+
+blk.31.attn_q.weight=Q3_K
+blk.31.attn_k.weight=Q3_K
+blk.31.attn_v.weight=Q3_K
+blk.31.attn_output.weight=Q3_K
+
+blk.32.attn_q.weight=Q3_K
+blk.32.attn_k.weight=Q3_K
+blk.32.attn_v.weight=Q3_K
+blk.32.attn_output.weight=Q3_K
+
+blk.33.attn_q.weight=Q3_K
+blk.33.attn_k.weight=Q3_K
+blk.33.attn_v.weight=Q3_K
+blk.33.attn_output.weight=Q3_K
+
+blk.34.attn_q.weight=Q3_K
+blk.34.attn_k.weight=Q3_K
+blk.34.attn_v.weight=Q3_K
+blk.34.attn_output.weight=Q3_K
+
+# === AGGRESSIVE: FFN layers (can tolerate 2-bit) ===
+# All other tensors will default to Q2_K via --output-tensor-type flag

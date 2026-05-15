@@ -1,0 +1,216 @@
+# Calibration Dataset for gemma4-e2b imatrix Generation
+# This file contains diverse text samples to help identify important weights
+
+## Code Generation Example
+def fibonacci(n):
+    """Calculate the nth Fibonacci number using dynamic programming."""
+    if n <= 1:
+        return n
+    
+    fib = [0] * (n + 1)
+    fib[1] = 1
+    
+    for i in range(2, n + 1):
+        fib[i] = fib[i-1] + fib[i-2]
+    
+    return fib[n]
+
+class BinarySearchTree:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+    
+    def insert(self, value):
+        if value < self.value:
+            if self.left is None:
+                self.left = BinarySearchTree(value)
+            else:
+                self.left.insert(value)
+        else:
+            if self.right is None:
+                self.right = BinarySearchTree(value)
+            else:
+                self.right.insert(value)
+
+## Mathematical Reasoning
+To solve the equation 2x + 5 = 13, we need to isolate x:
+Step 1: Subtract 5 from both sides: 2x = 8
+Step 2: Divide both sides by 2: x = 4
+Therefore, x = 4.
+
+The quadratic formula is x = (-b ± sqrt(b² - 4ac)) / 2a
+For the equation x² + 5x + 6 = 0, we have a=1, b=5, c=6
+Discriminant = 25 - 24 = 1
+Solutions: x = (-5 ± 1) / 2 = -2 or -3
+
+## Natural Language Understanding
+Artificial intelligence has transformed modern computing. Machine learning models can now understand context, generate coherent text, and solve complex problems. The advancement of transformer architectures has enabled models to process long sequences and maintain context across thousands of tokens. Neural networks learn patterns through backpropagation and gradient descent, adjusting weights to minimize loss functions.
+
+## Technical Documentation
+The HTTP protocol operates on a request-response model. When a client sends a GET request to a server, the server processes the request and returns a response with an appropriate status code. Common status codes include 200 (OK), 404 (Not Found), and 500 (Internal Server Error). The protocol supports various methods including POST for creating resources, PUT for updates, DELETE for removal, and PATCH for partial modifications.
+
+RESTful APIs follow stateless principles where each request contains all necessary information. Authentication typically uses tokens like JWT (JSON Web Tokens) that encode user identity and permissions. Rate limiting prevents abuse by restricting requests per time window.
+
+## Creative Writing
+The old library stood silent in the moonlight. Dust particles danced through beams of silver light that filtered through the tall windows. Ancient books lined the shelves, their leather spines cracked with age, holding secrets and stories from centuries past. A young scholar entered, footsteps echoing on the marble floor, searching for a tome that had been lost for generations.
+
+Outside, the city bustled with life, but here in this sanctuary of knowledge, time seemed to stand still. The smell of old paper and ink filled the air, a perfume that only lovers of books could truly appreciate.
+
+## Logical Reasoning
+If all mammals are warm-blooded, and all dogs are mammals, then all dogs must be warm-blooded. This is an example of deductive reasoning where the conclusion follows necessarily from the premises.
+
+Consider the following: All roses are flowers. Some flowers fade quickly. Therefore, some roses fade quickly. This is invalid reasoning because we cannot conclude which specific flowers fade quickly.
+
+## Instruction Following
+To make a simple web server:
+1. Import the http.server module
+2. Define the port number (typically 8000 for development)
+3. Create a server instance using HTTPServer
+4. Start the server with serve_forever()
+5. Handle requests as they arrive using custom handler classes
+6. Implement GET, POST methods as needed
+7. Parse request headers and body
+8. Return appropriate responses with status codes
+9. Handle errors gracefully with try-except blocks
+10. Log all requests for debugging purposes
+
+## Conversational Context
+User: What's the capital of France?
+Assistant: The capital of France is Paris. It's located in the north-central part of the country along the Seine River and is known for landmarks like the Eiffel Tower and the Louvre Museum.
+
+User: How many people live there?
+Assistant: The city of Paris proper has about 2.2 million inhabitants, while the greater Paris metropolitan area has around 12 million people, making it one of the largest urban areas in Europe.
+
+User: What about the weather?
+Assistant: Paris has a temperate oceanic climate with mild winters and warm summers. Average temperatures range from 3-7°C in winter to 15-25°C in summer, with rainfall distributed throughout the year.
+
+## Data Analysis
+Given the dataset: [4, 7, 2, 9, 1, 5, 8, 3, 6]
+- Mean: (4+7+2+9+1+5+8+3+6)/9 = 5.0
+- Median: Sorted: [1, 2, 3, 4, 5, 6, 7, 8, 9], middle value = 5
+- Range: 9 - 1 = 8
+- Standard deviation: sqrt(sum((x - mean)²) / n)
+- Variance: 6.67
+- Mode: No repeating values
+
+For a normal distribution with mean=100 and std=15, approximately 68% of values fall within one standard deviation, 95% within two standard deviations, and 99.7% within three.
+
+## Abstract Concepts
+Consciousness remains one of philosophy's most challenging problems. The subjective experience of awareness—what it feels like to perceive, think, and feel—cannot be easily reduced to physical processes, yet it emerges from the brain's neural activity. This is known as the "hard problem of consciousness" as defined by philosopher David Chalmers.
+
+Free will versus determinism presents another paradox: if our brains operate according to physical laws, are our choices predetermined? Or does quantum uncertainty provide room for genuine agency?
+
+## Multi-step Problem Solving
+Problem: A train travels 120 miles in 2 hours. At this rate, how far will it travel in 5 hours?
+
+Solution:
+Step 1: Find the rate: 120 miles ÷ 2 hours = 60 mph
+Step 2: Calculate distance for 5 hours: 60 mph × 5 hours = 300 miles
+Answer: The train will travel 300 miles in 5 hours.
+
+Problem: If a rectangle has length 15cm and width 8cm, what is its perimeter and area?
+Step 1: Perimeter = 2(length + width) = 2(15 + 8) = 46cm
+Step 2: Area = length × width = 15 × 8 = 120cm²
+
+## Historical Context
+The Renaissance period, spanning roughly from the 14th to 17th centuries, marked a cultural rebirth in Europe. It began in Italy with figures like Leonardo da Vinci and Michelangelo pushing boundaries in art, science, and engineering. The printing press, invented by Gutenberg around 1440, revolutionized knowledge distribution and literacy rates soared across the continent.
+
+## Advanced Programming Patterns
+Implementing a thread-safe singleton pattern in Python requires careful attention to race conditions. The classic double-checked locking pattern can be implemented using threading.Lock() to ensure only one instance is created even in multithreaded environments. Here's a robust implementation using a metaclass:
+
+class SingletonMeta(type):
+    _instances = {}
+    _lock = threading.Lock()
+    
+    def __call__(cls, *args, **kwargs):
+        if cls not in cls._instances:
+            with cls._lock:
+                if cls not in cls._instances:
+                    instance = super().__call__(*args, **kwargs)
+                    cls._instances[cls] = instance
+        return cls._instances[cls]
+
+The async/await pattern in modern JavaScript enables non-blocking I/O operations. When handling multiple concurrent requests, Promise.all() can execute them in parallel while maintaining error handling through try-catch blocks. Async generators allow streaming data processing without loading entire datasets into memory.
+
+## Scientific Computing
+The Navier-Stokes equations describe fluid dynamics: ρ(∂v/∂t + v·∇v) = -∇p + μ∇²v + f
+Where ρ is density, v is velocity field, p is pressure, μ is viscosity, and f represents body forces.
+
+For numerical integration, the Runge-Kutta method provides fourth-order accuracy:
+k1 = f(t, y)
+k2 = f(t + h/2, y + h*k1/2)
+k3 = f(t + h/2, y + h*k2/2)
+k4 = f(t + h, y + h*k3)
+y_next = y + (h/6)*(k1 + 2*k2 + 2*k3 + k4)
+
+## Database Query Optimization
+Analyzing SQL query execution plans reveals bottlenecks. Index usage dramatically improves SELECT performance when filtering on indexed columns. However, indexes slow INSERT/UPDATE operations and consume additional storage. Composite indexes benefit queries filtering on multiple columns, but column order matters—place most selective columns first.
+
+SELECT u.name, COUNT(o.id) as order_count
+FROM users u
+LEFT JOIN orders o ON u.id = o.user_id
+WHERE u.created_at > '2024-01-01'
+GROUP BY u.id, u.name
+HAVING COUNT(o.id) > 5
+ORDER BY order_count DESC
+LIMIT 100;
+
+The query planner evaluates multiple execution strategies: nested loop joins, hash joins, or merge joins depending on table sizes and available indexes. Materialized views cache expensive aggregations for read-heavy workloads.
+
+## Machine Learning Concepts
+Gradient descent optimizes neural networks by iteratively adjusting weights to minimize loss. The learning rate hyperparameter controls step size—too large causes oscillation, too small leads to slow convergence. Adam optimizer adapts learning rates per parameter using moving averages of gradients and squared gradients.
+
+Backpropagation computes gradients through the chain rule:
+∂L/∂w = ∂L/∂y * ∂y/∂z * ∂z/∂w
+
+Regularization techniques prevent overfitting: L1 (Lasso) encourages sparsity, L2 (Ridge) penalizes large weights, Dropout randomly disables neurons during training. Batch normalization stabilizes training by normalizing layer inputs.
+
+## Network Programming
+TCP provides reliable byte streams with flow control and congestion avoidance. The three-way handshake establishes connections: SYN, SYN-ACK, ACK. Window scaling negotiates buffer sizes for high-bandwidth networks. Nagle's algorithm reduces small packet overhead by buffering data.
+
+WebSocket maintains persistent bidirectional connections over HTTP:
+const ws = new WebSocket('wss://api.example.com/stream');
+ws.onopen = () => ws.send(JSON.stringify({type: 'subscribe', channel: 'updates'}));
+ws.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+    console.log('Received:', data);
+};
+
+gRPC uses HTTP/2 multiplexing for efficient RPC with protocol buffers providing compact binary serialization.
+
+## Cryptography Fundamentals
+RSA encryption relies on computational difficulty of factoring large semiprimes. Public key (n, e) encrypts: c = m^e mod n. Private key (d) decrypts: m = c^d mod n. Key generation selects large primes p, q computing n=p*q and φ(n)=(p-1)(q-1).
+
+AES operates on 128-bit blocks with key sizes 128, 192, or 256 bits. The cipher performs multiple rounds of substitution, permutation, mixing, and key addition. CBC mode chains blocks using XOR with previous ciphertext, requiring unique IVs.
+
+## System Design Principles
+Microservices architecture decomposes monoliths into independently deployable services. Each service owns its data store, communicating via APIs or message queues. Service mesh handles cross-cutting concerns: retry logic, circuit breakers, distributed tracing, mutual TLS.
+
+Load balancers distribute traffic using round-robin, least connections, or consistent hashing algorithms. Health checks automatically remove failing instances. Horizontal scaling adds capacity by deploying more replicas. Stateless services simplify scaling—session data moves to Redis or databases.
+
+Eventual consistency accepts temporary inconsistency for availability and partition tolerance (CAP theorem). CQRS separates read and write models for performance optimization.
+
+## Compiler Theory
+Lexical analysis tokenizes source code into terminal symbols. Regular expressions define token patterns matched by finite automata. Context-free grammars describe syntax parsed into abstract syntax trees.
+
+LL parsers predict productions using lookahead tokens. LR parsers build parse tables from grammar states, handling left-recursive grammars. Type checking ensures expression types match their usage contexts. Semantic analysis resolves identifiers and validates program semantics.
+
+Code generation translates ASTs to intermediate representations like three-address code. Register allocation assigns variables to limited hardware registers using graph coloring. Optimization passes include constant folding, dead code elimination, loop unrolling, and inline expansion.
+
+## Operating System Internals
+Virtual memory pages map logical addresses to physical frames via page tables. Translation lookaside buffers cache recent translations for performance. Page faults trigger on-demand loading from disk. Working set algorithms predict frequently accessed pages.
+
+Process scheduling algorithms balance throughput and latency: FIFO is simple but unfair, round-robin provides time slicing, shortest job first minimizes average wait time, priority scheduling serves high-priority tasks first. Multilevel feedback queues dynamically adjust priorities based on behavior.
+
+Deadlock occurs when processes circularly wait for resources. Prevention requires breaking circular wait, hold-and-wait, no preemption, or mutual exclusion conditions.
+
+## Quantum Computing Basics
+Qubits exist in superposition of |0⟩ and |1⟩ states: |ψ⟩ = α|0⟩ + β|1⟩ where |α|² + |β|² = 1. Measurement collapses superposition to definite states. Entanglement creates correlations stronger than classical physics permits.
+
+Quantum gates manipulate qubits: Hadamard creates superposition, CNOT entangles pairs, Pauli X/Y/Z perform rotations. Grover's algorithm searches unsorted databases in O(√N) time. Shor's algorithm factors integers exponentially faster than classical methods, threatening RSA security.
+
+## Climate Modeling
+General circulation models simulate atmosphere-ocean dynamics using Navier-Stokes equations discretized on 3D grids. Parameterization approximates sub-grid processes like cloud formation and turbulence. Coupled models integrate atmosphere, ocean, cryosphere, and biosphere components.
+
+Radiative forcing quantifies climate drivers: CO₂ absorption at 15μm wavelengths traps infrared radiation. Feedback loops amplify or dampen warming: ice-albedo feedback accelerates polar melting, water vapor feedback increases humidity. Climate sensitivity measures equilibrium warming from doubled CO₂, estimated at 3°C ± 1.5°C.
