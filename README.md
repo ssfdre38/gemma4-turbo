@@ -98,28 +98,43 @@ OLLAMA_KV_CACHE_TYPE=q8_0    # halves KV cache RAM usage
 - **Vision:** merged from original `gemma4:e4b/e2b/26b/31b` Ollama blobs (2131 tensors total for e2b/e4b; 1076 for 26b/31b)
 - **Architecture:** `gemma4` with full multimodal projector
 
-## See It In Action — Ash Bot
+## See It In Action
 
-[**Ash**](https://github.com/ssfdre38/ash-bot) is a self-hosted Discord AI bot built on .NET 10 that ships with `ssfdre38/gemma4-turbo` as its default model. It's the reference implementation for running this model in a real application.
+### Ash Server — Secure AI Backend (Recommended)
 
-**What Ash does:**
-- 💬 Natural conversation with a consistent personality in your Discord server
-- 🧠 Long-term memory across sessions (`memories.json`)
-- 🔧 20 built-in tools — web search, YouTube Music, file ops, code execution, reactions, DMs, and more
-- 🤖 Autonomous initiative — speaks unprompted on a configurable interval
-- 🦙 Fully local — no cloud AI APIs, everything runs through Ollama on your own machine
+[**Ash Server**](https://github.com/ssfdre38/ash-server) is a production-grade, security-first AI backend built on .NET 10, designed as a hardened platform for running `gemma4-turbo` locally with full access control.
+
+**What Ash Server provides:**
+- 🔐 JWT auth + full RBAC roles and permissions
+- 🛡️ Prompt injection guard (7 patterns) + per-user rate limiting
+- 💬 Discord, Slack, and Telegram integrations — permission-gated via identity linking
+- 📋 Full audit log for every external chat action
+- 🖥️ Admin panel — users, backends, channels, MCP servers, analytics
+- 🔌 MCP protocol support (add any MCP tool server)
+- 🦙 Runs on commodity hardware — no GPU, 8 GB RAM minimum
+- 📦 One-command install: Windows Service, systemd, or launchd
 
 **Quick start:**
 ```bash
-git clone https://github.com/ssfdre38/ash-bot
-cd ash-bot
-# Windows:
-setup.bat
-# Linux/macOS:
-./setup.sh
+ollama pull ssfdre38/gemma4-turbo
+git clone https://github.com/ssfdre38/ash-server
+sudo bash ash-server/install.sh    # Linux/macOS — build + install as service
+```
+```powershell
+# Windows (Administrator PowerShell):
+git clone https://github.com/ssfdre38/ash-server
+cd ash-server; .\install.ps1
 ```
 
-Ash will auto-pull `ssfdre38/gemma4-turbo` on first launch if it isn't already installed.
+Open **http://localhost:18799** — first registered user becomes admin automatically.
+
+→ [**github.com/ssfdre38/ash-server**](https://github.com/ssfdre38/ash-server)
+
+---
+
+### Ash Bot — Discord Personality Bot
+
+[**Ash Bot**](https://github.com/ssfdre38/ash-bot) is a Discord bot with Ash's personality, 20 built-in tools, and long-term memory — the original consumer-facing client.
 
 → [**github.com/ssfdre38/ash-bot**](https://github.com/ssfdre38/ash-bot)
 
