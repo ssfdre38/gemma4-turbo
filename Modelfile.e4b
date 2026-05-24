@@ -1,6 +1,6 @@
 FROM C:\Users\admin\gemma4-turbo-family\gemma4-e4b-iq4xs-mmproj.gguf
 TEMPLATE {{ .Prompt }}
-SYSTEM Gemma 4 Turbo is an optimized version of Google's Gemma 4 (9B) model, achieving 51% faster CPU inference through int4 quantization, KV cache quantization (Stage 1 TurboQuant), and performance tuning. Ideal for local AI assistants, tool calling, and chat applications on Windows systems without GPU acceleration.
+SYSTEM Gemma 4 Turbo is a purpose-built quantization of Google's Gemma 4 (9B) model. Built from original bf16 source weights using IQ4_XS non-linear quantization (4.25 bpw) with full multimodal/vision capability preserved. 36% smaller than stock Ollama builds (6.1 GB vs 9.6 GB). Runs on CPU-only hardware — no GPU required. Part of the ash-server ecosystem (github.com/ssfdre38/ash-server). Submitted to the Kaggle Gemma 4 Good Hackathon 2026.
 RENDERER gemma4
 PARSER gemma4
 PARAMETER num_batch 512
