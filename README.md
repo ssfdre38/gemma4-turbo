@@ -12,6 +12,7 @@ Google's stock Gemma 4 on Ollama ships with Q4_K_M quantization applied to alrea
 |-----|------|---------|--------------|
 | `e2b` | 4.3 GB | -40% (was 7.2 GB) | 8 GB+ |
 | `e4b` / `latest` | 6.1 GB | -36% (was 9.6 GB) | 10 GB+ |
+| `12b` | 6.9 GB | -31% (was 10 GB) | 12 GB+ |
 | `26b` | 15 GB | -12% (was 17 GB) | 20 GB+ |
 | `31b` | 18 GB | -5% (was 19 GB) | 24 GB+ |
 
@@ -20,6 +21,7 @@ Google's stock Gemma 4 on Ollama ships with Q4_K_M quantization applied to alrea
 ```bash
 ollama run ssfdre38/gemma4-turbo          # e4b (recommended, multimodal)
 ollama run ssfdre38/gemma4-turbo:e2b      # 8GB RAM machines
+ollama run ssfdre38/gemma4-turbo:12b      # balanced multimodal
 ollama run ssfdre38/gemma4-turbo:26b      # high quality
 ollama run ssfdre38/gemma4-turbo:31b      # maximum quality
 
@@ -151,9 +153,9 @@ Open **http://localhost:18799** — first registered user becomes admin automati
 
 **[gemma4-nano](https://ollama.com/ssfdre38/gemma4-nano)**:
 - Q3_K_S quantization (3.41 bpw)
-- 50-57% size reduction vs stock models
+- 30-57% size reduction vs stock models
 - **Text-only** (no vision encoder)
-- 3.1 GB - 4.7 GB for e2b/e4b
+- 3.1 GB - 13 GB depending on size
 - **13% faster inference** than turbo
 - Optimized for mobile and edge devices
 - [View documentation](NANO_README.md)

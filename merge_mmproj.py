@@ -19,7 +19,7 @@ GGUF_VERSION = 3
 DEFAULT_ALIGNMENT = 32
 
 VISION_TENSOR_PREFIXES = ('a.', 'v.', 'mm.')
-VISION_KV_PREFIXES = ('gemma4.vision.', 'gemma4.audio.')
+VISION_KV_PREFIXES = ('gemma4.vision.', 'gemma4.audio.', 'clip.')
 
 def align_to(offset, alignment):
     return ((offset + alignment - 1) // alignment) * alignment
@@ -154,6 +154,12 @@ MODELS = [
         'lm':   r'C:\Users\admin\gemma4-turbo-family\gemma4-31b-iq4xs-turbo.gguf',
         'orig': r'C:\Users\admin\.ollama\models\blobs\sha256-280af6832eca23cb322c4dcc65edfea98a21b8f8ab07dc7553bd6f7e6e7a3313',
         'out':  r'C:\Users\admin\gemma4-turbo-family\gemma4-31b-iq4xs-mmproj.gguf',
+    },
+    {
+        'name': '12b',
+        'lm':   r'C:\Users\admin\gemma4-turbo-family\gemma-4-12B-it-IQ4_XS.gguf',
+        'orig': r'C:\Users\admin\gemma4-turbo-family\mmproj-gemma-4-12B-it-f16.gguf',
+        'out':  r'C:\Users\admin\gemma4-turbo-family\gemma4-12b-iq4xs-mmproj.gguf',
     },
 ]
 

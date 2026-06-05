@@ -14,6 +14,7 @@ ollama run ssfdre38/gemma4-nano
 # Or specify a size
 ollama run ssfdre38/gemma4-nano:e2b  # 3.1 GB - fits 4GB RAM devices
 ollama run ssfdre38/gemma4-nano:e4b  # 4.7 GB - best balance
+ollama run ssfdre38/gemma4-nano:12b  # 5.7 GB - balanced reasoning
 ollama run ssfdre38/gemma4-nano:26b  # 12 GB - desktop powerhouse
 ollama run ssfdre38/gemma4-nano:31b  # 13 GB - 31B params in e4b size!
 ```
@@ -41,6 +42,7 @@ ollama run my-nano
 |-------|----------|----------------|-------------------|-----------|
 | **e2b** | 7.2 GB | 4.3 GB | **3.1 GB** | **-57%** |
 | **e4b** | 9.6 GB | 6.1 GB | **4.7 GB** | **-51%** |
+| **12b** | 10 GB | 6.9 GB | **5.7 GB** | **-43%** |
 | **26b** | 17 GB | 15 GB | **12 GB** | **-29%** |
 | **31b** | 19 GB | 18 GB | **13 GB** | **-32%** |
 
