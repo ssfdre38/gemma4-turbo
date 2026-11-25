@@ -18,11 +18,13 @@ tags:
   - ollama
   - llama-cpp
   - haven-cpp
+  - tpu
+  - trillium
 ---
 
 # Gemma 4.5 Turbo (`ssfdre38/gemma4.5-turbo`)
 
-**Algebraically optimized Gemma 4 models built from unquantized BF16 source weights via [`haven-bake`](https://github.com/Haven-AI-Companion/haven-cpp) — lower perplexity, smaller footprint, faster CPU inference, and full multimodal vision + thinking preserved.**
+**Algebraically optimized Gemma 4 models built from unquantized BF16 source weights via [`haven-bake`](https://github.com/ssfdre38/haven-cpp) — lower perplexity, smaller footprint, faster CPU inference, pure C++20 Google Cloud TPU v6e Trillium acceleration (up to 18,512 tok/s!), and full multimodal vision + thinking preserved.**
 
 > **Zero retraining. Pure exact linear algebra baked directly into BF16 weights before `IQ4_XS` quantization.**
 
@@ -61,8 +63,8 @@ Our open-source C++20 AVX2 optimizer **`haven-bake`** resolves these at BF16 bak
    - Merges the full multimodal vision encoder (`merge_g45_mmproj.py`) without re-quantizing or disturbing LM weights.
 
 2. **Native `haven-cpp` Turbo Edition (`gemma4.5-*-haven-turbo-iq4xs.gguf`):**
-   - Everything in Stock, PLUS **norm-preserving orthogonal Block-256 / Block-64 Fast Walsh-Hadamard Transform (FWHT)** baked into `Q/K/V`, `FFN Gate/Up`, `FFN Down`, and `MoE` projections (`gemma4.turbo.*` metadata auto-dispatched by [`haven-cpp`](https://github.com/Haven-AI-Companion/haven-cpp) AVX2 kernels).
-   - Flattens both weight-block crest factors and `450x–900x` runtime activation cliffs by `16x`, slashing KL divergence vs unquantized BF16 by **19% to 44%**!
+   - Everything in Stock, PLUS **norm-preserving orthogonal Block-256 / Block-64 Fast Walsh-Hadamard Transform (FWHT)** baked into `Q/K/V`, `FFN Gate/Up`, `FFN Down`, and `MoE` projections (`gemma4.turbo.*` metadata auto-dispatched by [`haven-cpp`](https://github.com/ssfdre38/haven-cpp) AVX2 CPU and OpenXLA PJRT TPU kernels).
+   - Flattens both weight-block crest factors and `450x–900x` runtime activation cliffs by `16x`, slashing KL divergence vs unquantized BF16 by **19% to 44%** and aligning natively with TPU v6e Hadamard W8A8 INT8 quantization!
 
 ---
 
@@ -103,6 +105,19 @@ Measured against the original unquantized BF16 masters on CPU (`haven-cpp` AVX2 
 | **26B-A4B Turbo** | `seq` vs `batch` Cosine / Top-1 | — | **`0.9998` / Exact `100==100`** | Clean English + FWHT | **`58.70 tok/s`** *(TTFT `4.67s`, `5.07x` speedup)* |
 | **31B Dense Turbo** | `seq` vs `batch` Cosine / Top-1 | `0.9991` *(Stock)* | **`0.9998` / Exact `100==100`** | `max_abs_diff` cut `1.46 → 0.83` (`-43%`) | **`7.57 tok/s`** *(Decode: `1.69 tok/s` vs `1.62` Stock)* |
 
+### 4. Native `haven-cpp` Pure C++20 Cloud TPU v6e-4 (Trillium) Silicon Benchmarks
+
+Verified across all four Gemma 4.5 Turbo models on **4x Google Cloud TPU v6e-4 Trillium** (128 GB HBM3, 2x2 Optical ICI Torus, zero Python runtime via OpenXLA PJRT C ABI in [`haven-cpp`](https://github.com/ssfdre38/haven-cpp) commit `d0a4077`):
+
+| Model (`haven-turbo`) | Layers / HBM3 Footprint (BF16 / INT8) | `B=1` Interactive Decode | vs Xeon CPU | `S=128` MXU Prefill | Peak Cloud Batching | 262k Logit Parity vs F32 CPU | Top-1 Match |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **E2B Turbo** | 35L + Pleias (`5.4 / 2.9 GB`) | **`406.3 tok/s`** *(1-chip: `251.4`)* | **19.2x** | **`43,858 tok/s`** (`2.92 ms`) | **`18,512.4 tok/s`** (`B=128` BF16) | **`0.999991 – 1.000000`** | **11/11 EXACT** |
+| **E4B Turbo** | 42L + Pleias (`9.3 / 5.0 GB`) | **`343.2 tok/s`** *(1-chip: `184.7`)* | **31.8x** | **`30,415 tok/s`** (`4.21 ms`) | **`16,101.4 tok/s`** (`B=128` INT8) | **`0.999979`** | **11/11 EXACT** |
+| **26B-A4B MoE Turbo** | 30L 128E Top-8 (`47.1 / 23.7 GB`) | **`201.6 tok/s`** *(BF16: `180.2`)* | **15.2x** | **`14,334 tok/s`** (`8.93 ms`) | **`9,886.9 tok/s`** (`B=256` W8A8) | **`0.999992`** *(W8A8: **`0.999925`**)* | **8/8 EXACT** |
+| **31B Dense Turbo** | 60L Dense (`57.2 / 28.7 GB`) | **`110.8 tok/s`** *(BF16: `66.8`)* | **65.6x** | **`9,637 tok/s`** (`13.28 ms`) | **`2,673.1 tok/s`** (`B=64` INT8) | **`0.999921`** *(INT8: **`0.998900`**)* | **7/7 EXACT** |
+
+> All 37/37 TPU configurations across all 4 models achieved **100% exact Top-1 token agreement** against F32 CPU ground truth (`0.9989 – 1.0000` full 262,144-vocab cosine similarity).
+
 ---
 
 ## Included Files on Hugging Face (`ssfdre38/gemma4.5-turbo-gguf`)
@@ -120,7 +135,7 @@ Measured against the original unquantized BF16 masters on CPU (`haven-cpp` AVX2 
   - `gemma4.5-31b-iq4xs.gguf` (`15.70 GiB`)
 
 ### Native `haven-cpp` Block-FWHT Turbo GGUFs
-> Requires [`haven-cpp`](https://github.com/Haven-AI-Companion/haven-cpp) (commit `637ffa6` or later) which automatically detects `gemma4.turbo.*` metadata and runs fused AVX2 FWHT kernels. Do **not** load `*-haven-turbo-*` files in stock `llama.cpp`/Ollama (use the universal files above instead).
+> Requires [`haven-cpp`](https://github.com/ssfdre38/haven-cpp) (commit `d0a4077` or later for full CPU AVX2 + Cloud TPU v6e support across all 4 sizes) which automatically detects `gemma4.turbo.*` metadata and runs fused AVX2 FWHT / TPU StableHLO kernels. Do **not** load `*-haven-turbo-*` files in stock `llama.cpp`/Ollama (use the universal files above instead).
 
 - `gemma4.5-e2b-haven-turbo-iq4xs.gguf` (`3.07 GiB`)
 - `gemma4.5-e4b-haven-turbo-iq4xs.gguf` (`4.71 GiB`)
@@ -132,7 +147,7 @@ Measured against the original unquantized BF16 masters on CPU (`haven-cpp` AVX2 
 ## Reproducibility
 
 Built with open-source tooling:
-- **Architecture Optimizer:** `haven-bake` ([Haven-AI-Companion/haven-cpp](https://github.com/Haven-AI-Companion/haven-cpp))
+- **Architecture Optimizer & TPU Runtime:** `haven-bake` & `haven-cpp` ([ssfdre38/haven-cpp](https://github.com/ssfdre38/haven-cpp))
 - **Quantizer:** `llama.cpp` b9050 `llama-quantize` (`IQ4_XS`)
 - **Multimodal Merger:** `merge_g45_mmproj.py` ([ssfdre38/gemma4-turbo](https://github.com/ssfdre38/gemma4-turbo))
 
