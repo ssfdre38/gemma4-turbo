@@ -1,8 +1,10 @@
-# Gemma 4 Turbo
+# Gemma 4 Turbo & Gemma 4.5 Turbo
 
-A fully optimized Gemma 4 family built from bf16 source weights — smaller, faster, and fully multimodal out of the box.
+A fully optimized Gemma 4 family built from bf16 source weights — smaller, faster, lower perplexity, and fully multimodal out of the box.
 
-> 🚀 **New:** [gemma4-nano](https://ollama.com/ssfdre38/gemma4-nano) — ultra-compressed text-only models (3-5 GB) for mobile and edge devices, 13% faster than turbo!
+> 🔥 **New Release — Gemma 4.5 Turbo ([ssfdre38/gemma4.5-turbo](https://ollama.com/ssfdre38/gemma4.5-turbo) | [Hugging Face GGUFs](https://huggingface.co/ssfdre38/gemma4.5-turbo-gguf)):** Algebraically optimized via [`haven-bake`](https://github.com/Haven-AI-Companion/haven-cpp) before `IQ4_XS` quantization — strips dead shared-KV tensors (`60` on E2B, `54` on E4B), folds MoE router/expert scales (`26B`), and bakes zero-cost QuaRot R2 `V→O` Hadamard rotations for **strictly lower stock `llama.cpp` perplexity** (`E4B 6.23 → 5.97`, `26B 33.97 → 33.09`, `31B 11.71 → 10.99`, `E2B 8.68 exact parity`), plus native `haven-cpp` Block-256 FWHT Turbo weights cutting BF16 KL divergence by **19%–44%**. See [GEMMA4.5_README.md](GEMMA4.5_README.md) for full benchmarks!
+>
+> 🚀 **Edge/Mobile:** [gemma4-nano](https://ollama.com/ssfdre38/gemma4-nano) — ultra-compressed text-only models (3-5 GB) for mobile and edge devices, 13% faster than turbo!
 
 ## Why Turbo?
 
@@ -19,15 +21,22 @@ Google's stock Gemma 4 on Ollama ships with Q4_K_M quantization applied to alrea
 ## Quick Start
 
 ```bash
-ollama run ssfdre38/gemma4-turbo          # e4b (recommended, multimodal)
-ollama run ssfdre38/gemma4-turbo:e2b      # 8GB RAM machines
-ollama run ssfdre38/gemma4-turbo:12b      # balanced multimodal
-ollama run ssfdre38/gemma4-turbo:26b      # high quality
-ollama run ssfdre38/gemma4-turbo:31b      # maximum quality
+# Gemma 4.5 Turbo (Recommended — algebraically optimized + multimodal)
+ollama run ssfdre38/gemma4.5-turbo          # e4b (5.63 GiB, PPL 5.97 vs 6.23)
+ollama run ssfdre38/gemma4.5-turbo:e2b      # 3.99 GiB, 8GB+ RAM
+ollama run ssfdre38/gemma4.5-turbo:26b      # 14.21 GiB, 26B-A4B MoE (PPL 33.09 vs 33.97)
+ollama run ssfdre38/gemma4.5-turbo:31b      # 16.82 GiB, 31B Dense (PPL 10.99 vs 11.71)
+
+# Original Gemma 4 Turbo
+ollama run ssfdre38/gemma4-turbo            # e4b (multimodal)
+ollama run ssfdre38/gemma4-turbo:e2b        # 8GB RAM machines
+ollama run ssfdre38/gemma4-turbo:12b        # balanced multimodal
+ollama run ssfdre38/gemma4-turbo:26b        # high quality
+ollama run ssfdre38/gemma4-turbo:31b        # maximum quality
 
 # Ultra-compressed text-only (nano family)
-ollama run ssfdre38/gemma4-nano           # 4.7 GB, 13% faster, mobile-optimized
-ollama run ssfdre38/gemma4-nano:e2b       # 3.1 GB, fits 4GB RAM devices
+ollama run ssfdre38/gemma4-nano             # 4.7 GB, 13% faster, mobile-optimized
+ollama run ssfdre38/gemma4-nano:e2b         # 3.1 GB, fits 4GB RAM devices
 ```
 
 ## Vision & Multimodal
