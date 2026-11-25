@@ -100,7 +100,8 @@ Measured against the original unquantized BF16 masters on CPU (`haven-cpp` AVX2 
 | **E2B Turbo** | `forward_batch` Cosine vs BF16 | `0.8536` | **`0.9818`** | **`8.0x` less error** | Decode: `16.1 tok/s` |
 | **E4B Turbo** | `KL(bf16 \|\| q)` | `0.8067` | **`0.6523`** | **`-19.1%` less KL** | **`58.64 tok/s`** *(TTFT `4.67s`)* |
 | **E4B Turbo** | `forward` Cosine / Top-1 Agree | `0.9904` / `62.5%` | **`0.9983` / `72.9%`** | **`5.6x` less error / `+10.4%` Top-1** | Decode: `9.37 tok/s` |
-| **26B-A4B Turbo** | `seq` vs `batch` Cosine / Top-1 | — | **`0.9854` / Exact `100==100`** | Clean English + FWHT | **`58.70 tok/s`** *(TTFT `4.67s`, `5.07x` speedup)* |
+| **26B-A4B Turbo** | `seq` vs `batch` Cosine / Top-1 | — | **`0.9998` / Exact `100==100`** | Clean English + FWHT | **`58.70 tok/s`** *(TTFT `4.67s`, `5.07x` speedup)* |
+| **31B Dense Turbo** | `seq` vs `batch` Cosine / Top-1 | `0.9991` *(Stock)* | **`0.9998` / Exact `100==100`** | `max_abs_diff` cut `1.46 → 0.83` (`-43%`) | **`7.57 tok/s`** *(Decode: `1.69 tok/s` vs `1.62` Stock)* |
 
 ---
 
@@ -124,6 +125,7 @@ Measured against the original unquantized BF16 masters on CPU (`haven-cpp` AVX2 
 - `gemma4.5-e2b-haven-turbo-iq4xs.gguf` (`3.07 GiB`)
 - `gemma4.5-e4b-haven-turbo-iq4xs.gguf` (`4.71 GiB`)
 - `gemma4.5-26b-haven-turbo-iq4xs.gguf` (`13.10 GiB`)
+- `gemma4.5-31b-haven-turbo-iq4xs.gguf` (`15.70 GiB`)
 
 ---
 
