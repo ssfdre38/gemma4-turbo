@@ -20,11 +20,13 @@ tags:
   - haven-cpp
   - tpu
   - trillium
+  - cuda
+  - nvidia-l4
 ---
 
 # Gemma 4.5 Turbo (`ssfdre38/gemma4.5-turbo`)
 
-**Algebraically optimized Gemma 4 models built from unquantized BF16 source weights via [`haven-bake`](https://github.com/ssfdre38/haven-cpp) — lower perplexity, smaller footprint, faster CPU inference, pure C++20 Google Cloud TPU v6e Trillium acceleration (up to 18,512 tok/s!), and full multimodal vision + thinking preserved.**
+**Algebraically optimized Gemma 4 models built from unquantized BF16 source weights via [`haven-bake`](https://github.com/ssfdre38/haven-cpp) — lower perplexity, smaller footprint, faster CPU inference, verified across NVIDIA L4 24GB GPU (100% VRAM-resident for all 4 sizes) and Google Cloud TPU v6e Trillium (up to 18,512 tok/s), with full multimodal vision + thinking preserved.**
 
 > **Zero retraining. Pure exact linear algebra baked directly into BF16 weights before `IQ4_XS` quantization.**
 
@@ -117,6 +119,19 @@ Verified across all four Gemma 4.5 Turbo models on **4x Google Cloud TPU v6e-4 T
 | **31B Dense Turbo** | 60L Dense (`57.2 / 28.7 GB`) | **`110.8 tok/s`** *(BF16: `66.8`)* | **65.6x** | **`9,637 tok/s`** (`13.28 ms`) | **`2,673.1 tok/s`** (`B=64` INT8) | **`0.999921`** *(INT8: **`0.998900`**)* | **7/7 EXACT** |
 
 > All 37/37 TPU configurations across all 4 models achieved **100% exact Top-1 token agreement** against F32 CPU ground truth (`0.9989 – 1.0000` full 262,144-vocab cosine similarity).
+
+### 5. Google Cloud 1x NVIDIA L4 24GB GPU Benchmarks (`72W` TDP, Ada Lovelace `sm_89`, CUDA 13.0)
+
+Verified on serverless Google Cloud Run **1x NVIDIA L4 24GB** (`23,034 MiB` VRAM, `300 GB/s` GDDR6, `llama.cpp` CUDA `9c003a9`, `-ngl 99 -fa 1`, `r=3` repetitions — **all 4 models fit 100% inside 24 GB VRAM with zero CPU offload**):
+
+| Model (`IQ4_XS - 4.25 bpw`) | Size | Active Params | L4 `pp128` Prefill | L4 `pp512` Prefill | L4 `tg128` Decode | vs Xeon CPU |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Gemma 4.5 E2B** | `3.06 GiB` | `4.63 B` | `8,726.3 tok/s` | **`17,232.8 tok/s`** | **`125.80 tok/s`** | **6.7x** |
+| **Gemma 4.5 E4B** | `4.70 GiB` | `7.46 B` | `4,749.6 tok/s` | **`7,504.4 tok/s`** | **`72.05 tok/s`** | **7.3x** |
+| **Gemma 4.5 26B-A4B MoE** | `13.08 GiB` | `~4 B / 25.23 B` | `1,654.7 tok/s` | **`3,159.2 tok/s`** | **`83.04 tok/s`** | **7.1x** |
+| **Gemma 4.5 31B Dense** | `15.69 GiB` | `30.70 B` | `733.3 tok/s` | **`848.3 tok/s`** | **`14.28 tok/s`** *(80.2% GDDR6 BW)* | **7.9x** |
+
+> **Unmodified `haven-cpp` Pure C++20 on NVIDIA CUDA (`xla_cuda_plugin.so`, PJRT `0.70`, zero Python runtime):** Running [`haven-cpp`](https://github.com/ssfdre38/haven-cpp) (`d0a4077`) directly against OpenXLA's CUDA PJRT plugin on the same NVIDIA L4 verified **6/6 async multi-slot parity on E2B Turbo (`0.999974 – 1.000000` 262k-vocab cosine vs F32 CPU, exact Top-1 `6372 == 6372`)** and **`3,332 tok/s`** BF16 `S=128` prefill.
 
 ---
 
